@@ -1,0 +1,141 @@
+[project]
+name = "wof-explorer"
+version = "0.5.0a1"
+description = "WhosOnFirst geographic data explorer with cursor-based navigation and hierarchical queries"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Pattern Stack", email = "hello@pattern-stack.com"}
+]
+keywords = ["geospatial", "whosonfirst", "geography", "sqlite", "gis"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Database",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "aiosqlite>=0.19.0",
+    "sqlalchemy>=2.0.0",
+    "pydantic>=2.0.0",
+    "greenlet>=2.0.0", # Required for SQLAlchemy async support
+    "typer>=0.19.1",
+    "rich>=13.0.0",  # Progress bars for CLI
+]
+
+[project.urls]
+Homepage = "https://github.com/pattern-stack/geography-patterns"
+Repository = "https://github.com/pattern-stack/geography-patterns"
+Documentation = "https://github.com/pattern-stack/geography-patterns/blob/main/wof-explorer/README.md"
+Issues = "https://github.com/pattern-stack/geography-patterns/issues"
+
+[project.scripts]
+wof-explore = "wof_explorer.scripts.wof_explore:main"
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "mypy>=1.5.0",
+    "ruff>=0.1.0",
+    "black>=23.0.0",
+]
+notebook = [
+    "jupyter>=1.0.0",
+    "ipython>=8.14.0",
+]
+
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["wof_explorer*"]
+
+[tool.setuptools.package-data]
+wof_explorer = ["py.typed"]
+
+[dependency-groups]
+dev = [
+    "build>=1.3.0",
+    "twine>=6.2.0",
+    "types-shapely>=2.1.0.20250917",
+]
+[tool.pytest.ini_options]
+# Test discovery patterns
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# Async support
+asyncio_mode = "auto"
+
+# Custom markers for test organization
+markers = [
+    # Test scope markers
+    "unit: Unit tests - test isolated components without external dependencies",
+    "integration: Integration tests - test interaction between components",
+    "contract: Contract tests - verify connector interface compliance",
+
+    # Infrastructure requirement markers
+    "wof: Tests requiring WhosOnFirst database",
+    "sqlite: Tests requiring SQLite database",
+
+    # Performance markers
+    "slow: Tests that take >1 second to run (deselect with '-m \"not slow\"')",
+    "benchmark: Performance benchmark tests",
+
+    # Feature markers
+    "explorer: Tests for database exploration features",
+    "cursor: Tests for cursor-based navigation",
+    "serialization: Tests for data serialization (GeoJSON, CSV, WKT)",
+
+    # Special condition markers
+    "skip_ci: Tests to skip in CI/CD pipeline",
+    "requires_network: Tests requiring network access",
+]
+
+# Test output configuration
+addopts = [
+    "--strict-markers",  # Fail on unregistered markers
+    "--tb=short",        # Shorter traceback format
+    "-ra",               # Show all test summary info
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "*/tests/*",
+    "*/scripts/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.ruff.format]
+# Enable ruff formatting compatibility with black
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
