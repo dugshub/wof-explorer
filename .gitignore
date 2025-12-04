@@ -43,3 +43,7 @@ output/
 
 # OS
 .DS_Store
+
+# Environment
+.env
+.env.*
