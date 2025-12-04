@@ -14,17 +14,17 @@ This document explains how to distribute and install the WOF Explorer package.
 
 ## Installation Methods
 
-### 1. Git Installation (Recommended)
+### 1. PyPI Installation (Recommended)
 
 ```bash
-pip install git+https://github.com/pattern-stack/geography-patterns.git#subdirectory=wof-explorer
+pip install wof-explorer
 ```
 
 ### 2. Local Development
 
 ```bash
-git clone https://github.com/pattern-stack/geography-patterns.git
-cd geography-patterns/wof-explorer
+git clone https://github.com/dugspi/wof-explorer.git
+cd wof-explorer
 pip install -e .
 ```
 
@@ -95,9 +95,6 @@ twine check dist/*
 ## Usage After Installation
 
 ```python
-# Install
-pip install git+https://github.com/pattern-stack/geography-patterns.git#subdirectory=wof-explorer
-
 # Use
 from wof_explorer import WOFConnector, WOFSearchFilters
 ```

@@ -318,11 +318,6 @@ class WOFSearchCursor:
         return {
             "type": "FeatureCollection",
             "features": features,
-            "properties": {
-                "total_count": self.total_count,
-                "generated_by": "WOF Connector",
-                "query": self.query_filters,
-            },
         }
 
     async def to_geojson_string(self, **kwargs) -> str:

@@ -32,10 +32,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/pattern-stack/geography-patterns"
-Repository = "https://github.com/pattern-stack/geography-patterns"
-Documentation = "https://github.com/pattern-stack/geography-patterns/blob/main/wof-explorer/README.md"
-Issues = "https://github.com/pattern-stack/geography-patterns/issues"
+Homepage = "https://github.com/dugspi/wof-explorer"
+Repository = "https://github.com/dugspi/wof-explorer"
+Documentation = "https://github.com/dugspi/wof-explorer#readme"
+Issues = "https://github.com/dugspi/wof-explorer/issues"
 
 [project.scripts]
 wof-explore = "wof_explorer.scripts.wof_explore:main"

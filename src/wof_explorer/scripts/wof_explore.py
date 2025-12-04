@@ -85,9 +85,7 @@ def print_examples():
     print("  python -m wof_explorer.examples.batch_processing")
     print()
     print("Download examples from:")
-    print(
-        "  https://github.com/pattern-stack/geography-patterns/tree/main/wof-explorer/examples"
-    )
+    print("  https://github.com/dugspi/wof-explorer/tree/main/examples")
 
 
 def validate_installation():
@@ -119,9 +117,7 @@ def validate_installation():
         print()
         print("Installation validation failed!")
         print("Try reinstalling with:")
-        print(
-            "  pip install git+https://github.com/pattern-stack/geography-patterns.git#subdirectory=wof-explorer"
-        )
+        print("  pip install wof-explorer")
         sys.exit(1)
 
     except Exception as e:

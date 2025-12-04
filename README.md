@@ -22,10 +22,36 @@ pip install wof-explorer
 For development:
 
 ```bash
-git clone https://github.com/DougsHub/wof-explorer.git
+git clone https://github.com/dugspi/wof-explorer.git
 cd wof-explorer
 pip install -e ".[dev]"
 ```
+
+## CLI Tool
+
+The package includes a command-line tool for downloading WhosOnFirst databases:
+
+```bash
+# Download US and Canada databases (downloads, extracts, and merges automatically)
+wof-explore download us,ca
+
+# Download multiple countries
+wof-explore download us ca mx gb
+
+# Specify output directory
+wof-explore download us,ca -o ./data
+
+# Keep individual database files after merge
+wof-explore download us,ca --keep
+
+# List available country codes
+wof-explore countries
+
+# Validate installation
+wof-explore validate
+```
+
+The downloader fetches compressed databases from [geocode.earth](https://data.geocode.earth/wof/dist/sqlite/), extracts them, and merges multiple countries into a single `whosonfirst-combined.db` file.
 
 ## Quick Start
 
@@ -202,4 +228,4 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 - [WhosOnFirst](https://whosonfirst.org/) - The underlying geographic data project
 - [WhosOnFirst Data](https://data.whosonfirst.org/) - Download databases
-- [GitHub Issues](https://github.com/DougsHub/wof-explorer/issues) - Report bugs or request features
+- [GitHub Issues](https://github.com/dugspi/wof-explorer/issues) - Report bugs or request features
